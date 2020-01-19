@@ -1,0 +1,27 @@
+{
+  "name": "memofetch",
+  "version": "0.1.1",
+  "description": "Fetch API with Memoization",
+  "main": "index.js",
+  "keywords": [
+    "fetch",
+    "memoization",
+    "http",
+    "https",
+    "promise"
+  ],
+  "author": {
+    "name": "Youngjae Joo",
+    "email": "bityoungjae@gmail.com",
+    "url": "https://bityoungjae.com"
+  },
+  "engines": {
+    "node": ">=12.14.0"
+  },
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BitYoungjae/esm-pathnames.git"
+  }
+}
