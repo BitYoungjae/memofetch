@@ -65,20 +65,12 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
 {
   "expiration-time": 5000,
   "memo": {
-    "YnWCwtmbEuscxYizt193gqzCGMM=": {
+    "okI46Vj2LHYA/JcFTsGTfuiIUIg=": {
       "value": {
-        "args": {
-          "foo1": "bar1",
-          "foo2": "bar2"
-        },
-        "headers": {
-          "x-forwarded-proto": "https",
-          "host": "postman-echo.com",
-          "x-forwarded-port": "443"
-        },
-        "url": "https://postman-echo.com/get?foo1=bar1&foo2=bar2"
+        "x": "126.8666435",
+        "y": "37.5170100"
       },
-      "time": 1579437739784
+      "time": 1579435600310
     }
   }
 }
