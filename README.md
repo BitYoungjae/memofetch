@@ -8,14 +8,6 @@ fetch API with memoization
 npm i memofetch
 ```
 
-## APIs
-
-### memoFetch
-
-### setExpirationTime
-
-### setMaxMemo
-
 ## Usage
 
 ### GET
@@ -65,4 +57,79 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
 
   console.log(json);
 })();
+```
+
+## Save in JSON format
+
+```json
+{
+  "expiration-time": 5000,
+  "memo": {
+    "YnWCwtmbEuscxYizt193gqzCGMM=": {
+      "value": {
+        "args": {
+          "foo1": "bar1",
+          "foo2": "bar2"
+        },
+        "headers": {
+          "x-forwarded-proto": "https",
+          "host": "postman-echo.com",
+          "x-forwarded-port": "443"
+        },
+        "url": "https://postman-echo.com/get?foo1=bar1&foo2=bar2"
+      },
+      "time": 1579437739784
+    }
+  }
+}
+```
+
+## APIs
+
+### memoFetch
+
+```js
+import { memoFetch, setExpirationTime, setMaxMemo } from 'memofetch';
+
+const main = async () => {
+  await setMaxMemo(30);
+  await setExpirationTime(5000);
+
+  const json = await memoFetch(
+    'https://postman-echo.com/get?foo1=bar1&foo2=bar2',
+  );
+
+  console.log(json);
+};
+```
+
+### setConfigPath
+
+- **Default :** `process.cwd()`
+
+```js
+import { setConfigPath } from 'memoFetch';
+
+setConfigPath('./config/memo.json');
+```
+
+### setExpirationTime
+
+- **Unit :** `ms`
+- **Default :** `5000`
+
+```js
+import { setExpirationTime } from 'memoFetch';
+
+setExpirationTime(3600 * 1000); // set to 1hr
+```
+
+### setMaxMemo
+
+- **Default :** `10`
+
+```js
+import { setMaxMemo } from 'memoFetch';
+
+setMaxMemo(50);
 ```
