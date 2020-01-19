@@ -4,7 +4,7 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
   await setMaxMemo(10);
   await setExpirationTime(5000);
 
-  const json = await memoFetch(
+  const { data } = await memoFetch(
     'https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=' +
       encodeURIComponent('양천구'),
     {
@@ -21,20 +21,5 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
     },
   );
 
-  console.log(json);
+  console.log(data); // { x: '126.8666435', y: '37.5170100' }
 })();
-
-async () => {
-  await setMaxMemo(10);
-  await setExpirationTime(5000);
-  const json = await memoFetch('https://postman-echo.com/post', {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-
-    method: 'POST',
-    body: { b: 4 },
-  });
-
-  console.log(json);
-};
