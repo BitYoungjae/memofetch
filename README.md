@@ -48,7 +48,6 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
     "gBWWpZc5vilNlknBafd7yqi+nAo=": {
       "value": {
         "headers": {
-          // response headers
           "server": "nginx",
           "date": "Sun, 19 Jan 2020 14:24:55 GMT",
           "content-type": "application/json;charset=UTF-8",
@@ -56,7 +55,7 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
           "connection": "close",
           "x-ncp-trace-id": "36d31ckp3edpj38phnccqmcoph"
         },
-        "type": "object", // data type
+        "type": "object",
         "data": {
           "x": "129.3112381",
           "y": "35.5396493"
@@ -67,6 +66,16 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
   }
 }
 ```
+
+#### Data structure of the return value
+
+```js
+const { headers, type, data } = await memoFetch(...);
+```
+
+- **headers :** Headers of the response
+- **type :** Type of the return data _["string" | "object"]_
+- **data :** Data
 
 ### POST
 
