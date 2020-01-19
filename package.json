@@ -1,6 +1,6 @@
 {
   "name": "memofetch",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "Node.js Fetch API with Memoization",
   "main": "index.js",
   "keywords": [

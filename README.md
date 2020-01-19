@@ -115,7 +115,35 @@ const main = async () => {
 };
 ```
 
+#### Options
+
+The second argument can be an option value.
+
+```js
+import { memoFetch, setExpirationTime, setMaxMemo } from 'memofetch';
+
+const main = async () => {
+  const { data } = await memoFetch('url...', {
+    headers: {
+      id: 1,
+    },
+    filter: v => v,
+    method: 'POST',
+    body: { name: 'youngjae' },
+  });
+
+  console.log(data);
+};
+```
+
+- **headers :** Headers of the request
+- **method :** HTTP request methods
+- **filter :** Filter Function for Response Data
+- **body :** HTTP Message Body
+
 ### setConfigPath
+
+Set the path where memo data will be saved.
 
 - **Default :** `process.cwd()`
 
@@ -127,6 +155,8 @@ setConfigPath('./config/memo.json');
 
 ### setExpirationTime
 
+Set the expiration time for memo data.
+
 - **Unit :** `ms`
 - **Default :** `5000`
 
@@ -137,6 +167,8 @@ setExpirationTime(3600 * 1000); // set to 1hr
 ```
 
 ### setMaxMemo
+
+When the size of the memo data becomes larger than the set value, everything is initialized.
 
 - **Default :** `10`
 
