@@ -40,6 +40,23 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
 })();
 ```
 
+### Save in JSON format
+
+```json
+{
+  "expiration-time": 5000,
+  "memo": {
+    "okI46Vj2LHYA/JcFTsGTfuiIUIg=": {
+      "value": {
+        "x": "126.8666435",
+        "y": "37.5170100"
+      },
+      "time": 1579435600310
+    }
+  }
+}
+```
+
 ### POST
 
 ```js
@@ -57,23 +74,6 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
 
   console.log(json);
 })();
-```
-
-## Save in JSON format
-
-```json
-{
-  "expiration-time": 5000,
-  "memo": {
-    "okI46Vj2LHYA/JcFTsGTfuiIUIg=": {
-      "value": {
-        "x": "126.8666435",
-        "y": "37.5170100"
-      },
-      "time": 1579435600310
-    }
-  }
-}
 ```
 
 ## APIs
