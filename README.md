@@ -19,7 +19,7 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
   await setMaxMemo(10);
   await setExpirationTime(5000);
 
-  const json = await memoFetch(
+  const { data } = await memoFetch(
     'https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=' +
       encodeURIComponent('양천구'),
     {
@@ -36,7 +36,7 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
     },
   );
 
-  console.log(json);
+  console.log(data);
 })();
 ```
 
@@ -44,14 +44,25 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
 
 ```json
 {
-  "expiration-time": 5000,
   "memo": {
-    "okI46Vj2LHYA/JcFTsGTfuiIUIg=": {
+    "gBWWpZc5vilNlknBafd7yqi+nAo=": {
       "value": {
-        "x": "126.8666435",
-        "y": "37.5170100"
+        "headers": {
+          // response headers
+          "server": "nginx",
+          "date": "Sun, 19 Jan 2020 14:24:55 GMT",
+          "content-type": "application/json;charset=UTF-8",
+          "content-length": "867",
+          "connection": "close",
+          "x-ncp-trace-id": "36d31ckp3edpj38phnccqmcoph"
+        },
+        "type": "object", // data type
+        "data": {
+          "x": "129.3112381",
+          "y": "35.5396493"
+        }
       },
-      "time": 1579435600310
+      "time": 1579443896001
     }
   }
 }
@@ -63,7 +74,7 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
 (async () => {
   await setMaxMemo(10);
   await setExpirationTime(5000);
-  const json = await memoFetch('https://postman-echo.com/post', {
+  const { data } = await memoFetch('https://postman-echo.com/post', {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -72,7 +83,7 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
     body: { b: 4 },
   });
 
-  console.log(json);
+  console.log(data);
 })();
 ```
 
@@ -87,11 +98,11 @@ const main = async () => {
   await setMaxMemo(30);
   await setExpirationTime(5000);
 
-  const json = await memoFetch(
+  const { data } = await memoFetch(
     'https://postman-echo.com/get?foo1=bar1&foo2=bar2',
   );
 
-  console.log(json);
+  console.log(data);
 };
 ```
 
