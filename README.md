@@ -130,16 +130,18 @@ const main = async () => {
     filter: v => v,
     method: 'POST',
     body: { name: 'youngjae' },
+    useMemo: true,
   });
 
   console.log(data);
 };
 ```
 
-- **headers :** Headers of the request
-- **method :** HTTP request methods
-- **filter :** Filter Function for Response Data
-- **body :** HTTP Message Body
+- **headers :** Headers of the request _(Default : `null`)_
+- **method :** HTTP request methods _(Default : `GET`)_
+- **filter :** Filter Function for Response Data _(Default : `v => v`)_
+- **body :** HTTP Message Body _(Default : `''`)_
+- **useMemo :** If the value is false, do not use memoization. _(Default : `true`)_
 
 ### setConfigPath
 
