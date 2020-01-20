@@ -141,7 +141,7 @@ const main = async () => {
 - **method :** HTTP request methods _(Default : `GET`)_
 - **filter :** Filter Function for Response Data _(Default : `v => v`)_
 - **body :** HTTP Message Body _(Default : `''`)_
-- **useMemo :** If the value is false, do not use memoization. _(Default : `true`)_
+- **useMemo :** if useMemo is true, memoFetch works in memoization mode. _(Default : `true`)_
 
 ### setConfigPath
 
