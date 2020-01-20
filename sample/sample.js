@@ -1,4 +1,4 @@
-import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
+import { memoFetch, setExpirationTime, setMaxMemo } from '../dist/index.mjs';
 
 (async () => {
   await setMaxMemo(10);
@@ -21,5 +21,5 @@ import { memoFetch, setExpirationTime, setMaxMemo } from 'memoFetch';
     },
   );
 
-  console.log(data); // { x: '126.8666435', y: '37.5170100' }
+  console.log(data); /d/ { x: '126.8666435', y: '37.5170100' }
 })();

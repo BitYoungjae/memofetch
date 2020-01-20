@@ -1,8 +1,14 @@
 {
   "name": "memofetch",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Node.js Fetch API with Memoization",
-  "main": "index.js",
+  "main": "dist/index",
+  "module": "dist/index.mjs",
+  "files": [
+    "dist/index.js",
+    "dist/index.mjs",
+    "dist/index.es.js"
+  ],
   "keywords": [
     "fetch",
     "memoization",
@@ -16,10 +22,9 @@
     "url": "https://bityoungjae.com"
   },
   "engines": {
-    "node": ">=12.14.0"
+    "node": ">=10"
   },
   "license": "MIT",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/BitYoungjae/memofetch.git"
