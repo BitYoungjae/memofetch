@@ -1,12 +1,12 @@
 {
   "name": "memofetch",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Node.js Fetch API with Memoization",
   "main": "dist/bundle",
   "module": "dist/index.mjs",
   "files": [
     "dist/bundle.js",
-    "dist/index.mjs"
+    "dist/bundle.mjs"
   ],
   "keywords": [
     "fetch",
