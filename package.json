@@ -2,12 +2,11 @@
   "name": "memofetch",
   "version": "1.0.5",
   "description": "Node.js Fetch API with Memoization",
-  "main": "dist/index",
+  "main": "dist/bundle",
   "module": "dist/index.mjs",
   "files": [
-    "dist/index.js",
-    "dist/index.mjs",
-    "dist/index.es.js"
+    "dist/bundle.js",
+    "dist/index.mjs"
   ],
   "keywords": [
     "fetch",
@@ -16,6 +15,9 @@
     "https",
     "promise"
   ],
+  "scripts": {
+    "build": "npx rollup index.js --file dist/bundle.js --format cjs; npx rollup index.js --file dist/bundle.mjs --format esm"
+  },
   "author": {
     "name": "Youngjae Joo",
     "email": "bityoungjae@gmail.com",

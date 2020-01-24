@@ -4,18 +4,18 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var fs = require('fs');
-var path = require('path');
-var crypto = require('crypto');
 var https = _interopDefault(require('https'));
 var http = _interopDefault(require('http'));
 var url = require('url');
+var fs = require('fs');
+var path = require('path');
+var crypto = require('crypto');
 
 const { readFile, writeFile } = fs.promises;
 
-const getJSON = async url$$1 => {
+const getJSON = async url => {
   try {
-    const text = await readFile(url$$1, { encoding: 'utf-8' });
+    const text = await readFile(url, { encoding: 'utf-8' });
     const json = JSON.parse(text);
 
     return json;
@@ -24,30 +24,30 @@ const getJSON = async url$$1 => {
   }
 };
 
-const setJSON = async (url$$1, data) => {
+const setJSON = async (url, data) => {
   const json = JSON.stringify(data, null, 2);
 
-  await writeFile(url$$1, json);
+  await writeFile(url, json);
 };
 
 /*
  * Init Phase
  */
 (() => {
-  const b = {
+  process.env = {
+    ...process.env,
     memoizationPath: path.resolve('./memoization.json'),
     maxMemo: 10,
-    expirationTime: 5000
+    expirationTime: 5000,
   };
-  process.env = Object.assign(process.env, b);
 })();
 
 const getConfigPath = () => process.env.memoizationPath;
 const getMaxMemoLength = () => process.env.maxMemo;
 const getExpirationTime = () => process.env.expirationTime;
-const setConfigPath = url$$1 => process.env.memoizationPath = url$$1;
-const setMaxMemo = limit => process.env.maxMemo = limit;
-const setExpirationTime = time => process.env.expirationTime = time;
+const setConfigPath = url => (process.env.memoizationPath = url);
+const setMaxMemo = limit => (process.env.maxMemo = limit);
+const setExpirationTime = time => (process.env.expirationTime = time);
 
 /*
  * SHA1 Hash -> Base64 Digest - Fatest Way
@@ -63,9 +63,10 @@ const getConfig = async () => await getJSON(getConfigPath());
 
 const setConfig = async (key, value) => {
   const prevConfig = await getConfig();
-  const newConfig = Object.assign(prevConfig, {
-    [key]: value
-  });
+  const newConfig = {
+    ...prevConfig,
+    [key]: value,
+  };
 
   await setJSON(getConfigPath(), newConfig);
 };
@@ -95,12 +96,13 @@ const storeValue = async (key, value) => {
   const prevMemo = await getMemo();
   const time = Date.now();
   const hashKey = getHash(key);
-  const newMemo = Object.assign(prevMemo, {
+  const newMemo = {
+    ...prevMemo,
     [hashKey]: {
       value,
-      time
-    }
-  });
+      time,
+    },
+  };
 
   await setMemo(newMemo);
 };
@@ -123,14 +125,16 @@ const useCallback = async (f, key) => {
 
 const isEmptyObj = obj => JSON.stringify(obj) === '{}';
 const normalizeString = str => str.trim().toUpperCase();
-const isEqualStr = (first, second) => normalizeString(first) === normalizeString(second);
+const isEqualStr = (first, second) =>
+  normalizeString(first) === normalizeString(second);
 
-const memoFetch = async (url$$1, options = {}) => {
+const memoFetch = async (url$1, options = {}) => {
   const {
     filter = v => v,
     method = 'GET',
     headers = null,
-    useMemo = true
+    useMemo = true,
+    agent, // undefined => http.globalAgent
   } = options;
 
   let { body = '' } = options;
@@ -139,26 +143,27 @@ const memoFetch = async (url$$1, options = {}) => {
     body = JSON.stringify(body, null, 2);
   }
 
-  const parsedURL = url.parse(url$$1);
+  const parsedURL = url.parse(url$1);
 
   const {
     protocol,
     hostname,
-    path: path$$1,
-    port = protocol === 'https:' ? 443 : 80
+    path,
+    port = protocol === 'https:' ? 443 : 80,
   } = parsedURL;
 
   const httpModule = protocol === 'https:' ? https : http;
 
   const reqOptions = {
+    agent,
     method,
     hostname,
     port,
     headers,
-    path: path$$1
+    path,
   };
 
-  const deps = isEqualStr(method, 'post') ? url$$1 + body : url$$1;
+  const deps = isEqualStr(method, 'post') ? url$1 + body : url$1;
 
   const executorOrigin = (resolve, reject) => {
     const req = httpModule.request(reqOptions, res => {
@@ -167,7 +172,7 @@ const memoFetch = async (url$$1, options = {}) => {
 
       res.setEncoding('utf-8');
 
-      res.on('data', chunk => text += chunk);
+      res.on('data', chunk => (text += chunk));
       res.on('end', () => {
         let json = null;
 
@@ -209,6 +214,6 @@ const memoFetch = async (url$$1, options = {}) => {
 };
 
 exports.memoFetch = memoFetch;
+exports.setConfigPath = setConfigPath;
 exports.setExpirationTime = setExpirationTime;
 exports.setMaxMemo = setMaxMemo;
-exports.setConfigPath = setConfigPath;
