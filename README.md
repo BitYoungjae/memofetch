@@ -137,6 +137,7 @@ const main = async () => {
 };
 ```
 
+- **agent :** a Instance of http.Agent | boolean _(Default : `http.globalAgent`)_
 - **headers :** Headers of the request _(Default : `null`)_
 - **method :** HTTP request methods _(Default : `GET`)_
 - **filter :** Filter Function for Response Data _(Default : `v => v`)_
