@@ -3,7 +3,7 @@
   "version": "1.0.7",
   "description": "Node.js Fetch API with Memoization",
   "main": "dist/bundle",
-  "module": "dist/index.mjs",
+  "module": "dist/bundle.mjs",
   "files": [
     "dist/bundle.js",
     "dist/bundle.mjs"
