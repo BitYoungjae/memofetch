@@ -42,6 +42,8 @@ const setJSON = async (url, data) => {
   };
 })();
 
+let memData = null;
+
 const getConfigPath = () => process.env.memoizationPath;
 const getMaxMemoLength = () => process.env.maxMemo;
 const getExpirationTime = () => process.env.expirationTime;
@@ -59,7 +61,10 @@ const getHash = data => {
   return digest;
 };
 
-const getConfig = async () => await getJSON(getConfigPath());
+const getConfig = async () => {
+  if (memData) return memData;
+  return await getJSON(getConfigPath());
+};
 
 const setConfig = async (key, value) => {
   const prevConfig = await getConfig();
@@ -68,6 +73,7 @@ const setConfig = async (key, value) => {
     [key]: value,
   };
 
+  memData = newConfig;
   await setJSON(getConfigPath(), newConfig);
 };
 
