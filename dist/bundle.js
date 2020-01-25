@@ -30,19 +30,14 @@ const setJSON = async (url, data) => {
   await writeFile(url, json);
 };
 
-/*
- * Init Phase
- */
-(() => {
-  process.env = {
-    ...process.env,
-    memoizationPath: path.resolve('./memoization.json'),
-    maxMemo: 10,
-    expirationTime: 5000,
-  };
-})();
-
 let memData = null;
+
+process.env = {
+  ...process.env,
+  memoizationPath: path.resolve('./memoization.json'),
+  maxMemo: 10,
+  expirationTime: 5000,
+};
 
 const getConfigPath = () => process.env.memoizationPath;
 const getMaxMemoLength = () => process.env.maxMemo;
